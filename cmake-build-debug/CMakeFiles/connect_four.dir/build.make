@@ -70,17 +70,62 @@ CMakeFiles/connect_four.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/connect_four.dir/main.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/main.c" -o CMakeFiles/connect_four.dir/main.c.s
 
+CMakeFiles/connect_four.dir/gamestats.c.o: CMakeFiles/connect_four.dir/flags.make
+CMakeFiles/connect_four.dir/gamestats.c.o: ../gamestats.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/connect_four.dir/gamestats.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/connect_four.dir/gamestats.c.o   -c "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/gamestats.c"
+
+CMakeFiles/connect_four.dir/gamestats.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/connect_four.dir/gamestats.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/gamestats.c" > CMakeFiles/connect_four.dir/gamestats.c.i
+
+CMakeFiles/connect_four.dir/gamestats.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/connect_four.dir/gamestats.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/gamestats.c" -o CMakeFiles/connect_four.dir/gamestats.c.s
+
+CMakeFiles/connect_four.dir/mainmenu.c.o: CMakeFiles/connect_four.dir/flags.make
+CMakeFiles/connect_four.dir/mainmenu.c.o: ../mainmenu.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/connect_four.dir/mainmenu.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/connect_four.dir/mainmenu.c.o   -c "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/mainmenu.c"
+
+CMakeFiles/connect_four.dir/mainmenu.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/connect_four.dir/mainmenu.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/mainmenu.c" > CMakeFiles/connect_four.dir/mainmenu.c.i
+
+CMakeFiles/connect_four.dir/mainmenu.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/connect_four.dir/mainmenu.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/mainmenu.c" -o CMakeFiles/connect_four.dir/mainmenu.c.s
+
+CMakeFiles/connect_four.dir/endmenu.c.o: CMakeFiles/connect_four.dir/flags.make
+CMakeFiles/connect_four.dir/endmenu.c.o: ../endmenu.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/connect_four.dir/endmenu.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/connect_four.dir/endmenu.c.o   -c "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/endmenu.c"
+
+CMakeFiles/connect_four.dir/endmenu.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/connect_four.dir/endmenu.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/endmenu.c" > CMakeFiles/connect_four.dir/endmenu.c.i
+
+CMakeFiles/connect_four.dir/endmenu.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/connect_four.dir/endmenu.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/endmenu.c" -o CMakeFiles/connect_four.dir/endmenu.c.s
+
 # Object files for target connect_four
 connect_four_OBJECTS = \
-"CMakeFiles/connect_four.dir/main.c.o"
+"CMakeFiles/connect_four.dir/main.c.o" \
+"CMakeFiles/connect_four.dir/gamestats.c.o" \
+"CMakeFiles/connect_four.dir/mainmenu.c.o" \
+"CMakeFiles/connect_four.dir/endmenu.c.o"
 
 # External object files for target connect_four
 connect_four_EXTERNAL_OBJECTS =
 
 connect_four.exe: CMakeFiles/connect_four.dir/main.c.o
+connect_four.exe: CMakeFiles/connect_four.dir/gamestats.c.o
+connect_four.exe: CMakeFiles/connect_four.dir/mainmenu.c.o
+connect_four.exe: CMakeFiles/connect_four.dir/endmenu.c.o
 connect_four.exe: CMakeFiles/connect_four.dir/build.make
 connect_four.exe: CMakeFiles/connect_four.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable connect_four.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable connect_four.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/connect_four.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

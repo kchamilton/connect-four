@@ -74,7 +74,25 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/endmenu.c">
+			<Option target="connect_four"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/endmenu.h">
+			<Option target="connect_four"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/gamestats.c">
+			<Option target="connect_four"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/gamestats.h">
+			<Option target="connect_four"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/main.c">
+			<Option target="connect_four"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/mainmenu.c">
+			<Option target="connect_four"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/mainmenu.h">
 			<Option target="connect_four"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/CMakeLists.txt">

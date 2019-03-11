@@ -1,1 +1,1 @@
-/usr/bin/cc -g  -Wl,--enable-auto-import CMakeFiles/connect_four.dir/main.c.o  -o connect_four.exe -Wl,--out-implib,libconnect_four.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+/usr/bin/cc -g  -Wl,--enable-auto-import CMakeFiles/connect_four.dir/main.c.o CMakeFiles/connect_four.dir/gamestats.c.o CMakeFiles/connect_four.dir/mainmenu.c.o CMakeFiles/connect_four.dir/endmenu.c.o  -o connect_four.exe -Wl,--out-implib,libconnect_four.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

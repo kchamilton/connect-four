@@ -4,7 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/endmenu.c" "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/cmake-build-debug/CMakeFiles/connect_four.dir/endmenu.c.o"
+  "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/gamestats.c" "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/cmake-build-debug/CMakeFiles/connect_four.dir/gamestats.c.o"
   "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/main.c" "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/cmake-build-debug/CMakeFiles/connect_four.dir/main.c.o"
+  "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/mainmenu.c" "/cygdrive/c/Users/Kayla Hamilton/Desktop/CS 201 Portfolio/connect-four/cmake-build-debug/CMakeFiles/connect_four.dir/mainmenu.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

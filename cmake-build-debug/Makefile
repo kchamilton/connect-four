@@ -123,6 +123,60 @@ connect_four/fast:
 	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/build
 .PHONY : connect_four/fast
 
+endmenu.o: endmenu.c.o
+
+.PHONY : endmenu.o
+
+# target to build an object file
+endmenu.c.o:
+	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/endmenu.c.o
+.PHONY : endmenu.c.o
+
+endmenu.i: endmenu.c.i
+
+.PHONY : endmenu.i
+
+# target to preprocess a source file
+endmenu.c.i:
+	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/endmenu.c.i
+.PHONY : endmenu.c.i
+
+endmenu.s: endmenu.c.s
+
+.PHONY : endmenu.s
+
+# target to generate assembly for a file
+endmenu.c.s:
+	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/endmenu.c.s
+.PHONY : endmenu.c.s
+
+gamestats.o: gamestats.c.o
+
+.PHONY : gamestats.o
+
+# target to build an object file
+gamestats.c.o:
+	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/gamestats.c.o
+.PHONY : gamestats.c.o
+
+gamestats.i: gamestats.c.i
+
+.PHONY : gamestats.i
+
+# target to preprocess a source file
+gamestats.c.i:
+	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/gamestats.c.i
+.PHONY : gamestats.c.i
+
+gamestats.s: gamestats.c.s
+
+.PHONY : gamestats.s
+
+# target to generate assembly for a file
+gamestats.c.s:
+	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/gamestats.c.s
+.PHONY : gamestats.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -150,6 +204,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/main.c.s
 .PHONY : main.c.s
 
+mainmenu.o: mainmenu.c.o
+
+.PHONY : mainmenu.o
+
+# target to build an object file
+mainmenu.c.o:
+	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/mainmenu.c.o
+.PHONY : mainmenu.c.o
+
+mainmenu.i: mainmenu.c.i
+
+.PHONY : mainmenu.i
+
+# target to preprocess a source file
+mainmenu.c.i:
+	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/mainmenu.c.i
+.PHONY : mainmenu.c.i
+
+mainmenu.s: mainmenu.c.s
+
+.PHONY : mainmenu.s
+
+# target to generate assembly for a file
+mainmenu.c.s:
+	$(MAKE) -f CMakeFiles/connect_four.dir/build.make CMakeFiles/connect_four.dir/mainmenu.c.s
+.PHONY : mainmenu.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +240,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... connect_four"
 	@echo "... edit_cache"
+	@echo "... endmenu.o"
+	@echo "... endmenu.i"
+	@echo "... endmenu.s"
+	@echo "... gamestats.o"
+	@echo "... gamestats.i"
+	@echo "... gamestats.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... mainmenu.o"
+	@echo "... mainmenu.i"
+	@echo "... mainmenu.s"
 .PHONY : help
 
 
