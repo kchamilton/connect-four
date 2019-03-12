@@ -7,11 +7,16 @@
 #include <curses.h>
 #include <ncurses.h>
 
-void printHeader() {
+void printHeader(int playerNum) {
     clear();
     printw("Connect Four\n");
-    printw("Use the left and right arrow keys to select the column, press the down arrow key to drop the piece.\n\n");
+    printw("Use the left and right arrow keys to select the column, press the down arrow key to drop the piece.\n");
+    printw("Player %d's turn.\n\n", playerNum);
     refresh();
+}
+
+void printScore(int playerOneScore, int playerTwoScore) {
+    printw("\nPlayer 1: %d  vs.  Player 2: %d\n", playerOneScore, playerTwoScore);
 }
 
 char *createPlayerMove(int x) {
@@ -32,7 +37,7 @@ void printPlayerMove(char *playerMove, int x) {
     refresh();
 }
 
-void updatePlayerMove(char **gameBoard, char *playerMove, int x, int y, int location, int direction) {
+void updatePlayerMove(char **gameBoard, char *playerMove, int x, int y, int location, int playerNum, int scoreOne, int scoreTwo, int direction) {
     playerMove[(location * 3) + 1] = ' ';
     if(direction < 0) {
         playerMove[(--location * 3) + 1] = 'O';
@@ -41,9 +46,10 @@ void updatePlayerMove(char **gameBoard, char *playerMove, int x, int y, int loca
         playerMove[(++location * 3) + 1] = 'O';
     }
     clear();
-    printHeader();
+    printHeader(playerNum);
     printPlayerMove(playerMove, x);
     printGameBoard(gameBoard, x, y);
+    printScore(scoreOne, scoreTwo);
     refresh();
 }
 
@@ -77,18 +83,18 @@ char **createGameBoard(int x, int y) {
     return gameBoard;
 }
 
-void updateGameBoard(char **gameBoard, char *playerMove, int x, int y, int location) {
+void updateGameBoard(char **gameBoard, char *playerMove, int x, int y, int location, int playerNum) {
     int placed = 0, currentLoc = y - 1;
     while(!placed && currentLoc >= 0) {
         if(gameBoard[currentLoc][(location * 3) + 1] == ' ') {
-            gameBoard[currentLoc][(location * 3) + 1] = 'O';
+            gameBoard[currentLoc][(location * 3) + 1] = playerNum + '0';
             placed = 1;
         }
         else
             currentLoc--;
     }
     clear();
-    printHeader();
+    printHeader(playerNum);
     printPlayerMove(playerMove, x);
     printGameBoard(gameBoard, x, y);
 }
@@ -101,7 +107,6 @@ void printGameBoard(char **gameBoard, int x, int y) {
         printw("\n");
     }
     refresh();
-    //getch();
 }
 
 void freeGameBoard(char **gameBoard, int y) {

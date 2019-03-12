@@ -12,6 +12,7 @@
 
 int replayOptions() {
     int answer;
+    clear();
     printw("Thank you for playing Connect Four!\n");
     printw("Would you like to:\n");
     printw("\tHave a rematch? (1)\n");
@@ -19,6 +20,7 @@ int replayOptions() {
     printw("\tOr exit the game? (3)\n");
     printw("Enter your choice here: ");
     refresh();
+    echo();
     if(scanw("%d", &answer) && (answer == 1 || answer == 2 || answer == 3))
         return answer;
     else {

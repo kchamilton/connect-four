@@ -36,13 +36,13 @@ void selectXDimension(struct GameStats *gameStats) {
     printw("Please enter the width of the game board (less than or equal to %d): ", maxXDimension);
     refresh();
     if(scanw("%d", &x)) {
-        if(x <= maxXDimension && x > 0)
+        if(x <= maxXDimension && x >= 4)
             setxDimension(gameStats, x);
         else {
             if(x > maxXDimension)
                 printw("\nBoard size is too large, please enter a value less than or equal to %d.", maxXDimension);
             else
-                printw("\nBoard must have a dimension greater than 0, please enter a value greater than 0.");
+                printw("\nBoard must have a dimension greater than or equal 4, please enter a value greater than or equal to 4.");
             printw("\nPress any key to continue.");
             refresh();
             getch();
@@ -66,13 +66,13 @@ void selectYDimension(struct GameStats *gameStats) {
     printw("Please enter the height of the game board (less than or equal to %d): ", maxYDimension);
     refresh();
     if(scanw("%d", &y)) {
-        if(y <= maxYDimension)
+        if(y <= maxYDimension && y >= 4)
             setyDimension(gameStats, y);
         else {
             if(y > maxYDimension)
                 printw("\nBoard size is too large, please enter a value less than or equal to %d.", maxYDimension);
             else
-                printw("\nBoard must have a dimension greater than 0, please enter a value greater than 0.");
+                printw("\nBoard must have a dimension greater than or equal to 4, please enter a value greater than or equal to 4.");
             printw("\nPress any key to continue.");
             refresh();
             getch();
