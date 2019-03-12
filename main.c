@@ -1,6 +1,7 @@
 #include "gamestats.h"
 #include "mainmenu.h"
 #include "endmenu.h"
+#include "game.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <curses.h>
@@ -19,15 +20,12 @@ int main() {
             gameStats->playerOneScore = 0;
             gameStats->playerTwoScore = 0;
             executeMainMenu(gameStats);
-            printw("\nThe game mode is %d, the x Dimension is %d, and the y Dimension is %d.", gameStats->mode, gameStats->xDimension, gameStats->yDimension);
-            refresh();
-            getch();
             while (play) {
-                //PlayGame(gameStats)
+                playGame(gameStats);
                 executeEndMenu(gameStats, &play, &exit);
             }
         }
-        else exit = 0;
+        else exit = 1;
     }
     endwin();
     return 0;
@@ -39,7 +37,7 @@ int newGame() {
     printw("Welcome to Connect Four!\n");
     printw("Would you like to start a new game? (y/n): ");
     refresh();
-    if(scanf("%c", &answer)) {
+    if(scanw("%c", &answer)) {
         if(answer == 'y' || answer == 'Y')
             return 1;
         else if(answer == 'n' || answer == 'N')
