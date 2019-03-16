@@ -37,14 +37,9 @@ void printPlayerMove(char *playerMove, int x) {
     refresh();
 }
 
-void updatePlayerMove(char **gameBoard, char *playerMove, int x, int y, int location, int playerNum, int scoreOne, int scoreTwo, int direction) {
+void updatePlayerMove(char **gameBoard, char *playerMove, int x, int y, int location, int playerNum, int scoreOne, int scoreTwo, int newLocation) {
     playerMove[(location * 3) + 1] = ' ';
-    if(direction < 0) {
-        playerMove[(--location * 3) + 1] = 'O';
-    }
-    else {
-        playerMove[(++location * 3) + 1] = 'O';
-    }
+    playerMove[(newLocation * 3) + 1] = 'O';
     clear();
     printHeader(playerNum);
     printPlayerMove(playerMove, x);
@@ -83,20 +78,21 @@ char **createGameBoard(int x, int y) {
     return gameBoard;
 }
 
-void updateGameBoard(char **gameBoard, char *playerMove, int x, int y, int location, int playerNum) {
-    int placed = 0, currentLoc = y - 1;
-    while(!placed && currentLoc >= 0) {
-        if(gameBoard[currentLoc][(location * 3) + 1] == ' ') {
-            gameBoard[currentLoc][(location * 3) + 1] = playerNum + '0';
-            placed = 1;
-        }
-        else
-            currentLoc--;
-    }
+void updateGameBoard(char **gameBoard, char *playerMove, int x, int y, int xPos, int yPos, int playerNum) {
+    gameBoard[yPos][(xPos * 3) + 1] = playerNum + '0';
     clear();
     printHeader(playerNum);
     printPlayerMove(playerMove, x);
     printGameBoard(gameBoard, x, y);
+}
+
+int boardFull(char **gameBoard, int x) {
+    int full = 1;
+    for(int i = 0; i < x; i++) {
+        if(gameBoard[0][(i * 3) + 1] == ' ')
+            full = 0;
+    }
+    return full;
 }
 
 void printGameBoard(char **gameBoard, int x, int y) {
