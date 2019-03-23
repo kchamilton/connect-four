@@ -13,7 +13,7 @@ int main() {
     int exit = 0;
     initscr();
     while(!exit) {
-        if (newGame()) {
+        if(newGame()) {
             int play = 1;
             //new gameStats
             struct GameStats *gameStats = malloc(sizeof(gameStats));

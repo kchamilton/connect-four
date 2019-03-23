@@ -240,7 +240,7 @@ void aiMove(char **gameBoard, char *playerMove, struct Graph *playerOneGraph, st
 
 void congratulateWinner(int playerNum){
     clear();
-    printw("Congratulations Player %d, you won the game!\n", playerNum);
+    printw("Player %d has won the game!\n", playerNum);
     printw("Press any key to continue.");
     refresh();
     getch();
@@ -249,7 +249,7 @@ void congratulateWinner(int playerNum){
 void tieGame() {
     clear();
     printw("The game is a tie.\n");
-    printw("Press any key to continue.\n");
+    printw("Press any key to continue.");
     refresh();
     getch();
 }

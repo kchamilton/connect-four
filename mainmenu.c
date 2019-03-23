@@ -18,7 +18,15 @@ void selectMode(struct GameStats *gameStats) {
     printw("Enter mode here: ");
     refresh();
     if(scanw("%d", &mode))
-        setMode(gameStats, mode);
+        if(mode == 1 || mode == 2)
+            setMode(gameStats, mode);
+        else {
+            printw("\nError, please enter 1 or 2.");
+            printw("\nPress any key to continue.");
+            refresh();
+            getch();
+            selectMode(gameStats);
+        }
     else {
         printw("\nError, please enter an integer.");
         printw("\nPress any key to continue.");

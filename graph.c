@@ -36,10 +36,9 @@ struct Graph *createGraph(int num) {
 
 void freeAdjacencyList(struct Graph *graph, int vertex) {
     while(graph->adjacencyList[vertex] != NULL) {
-        struct node *temp = malloc(sizeof(struct node *));
+        struct node *temp;
         temp = graph->adjacencyList[vertex];
         graph->adjacencyList[vertex] = temp->next;
-        free(temp);
     }
 }
 
@@ -58,13 +57,6 @@ void addEdge(struct Graph *graph, int vertexOne, int vertexTwo, char playerNum) 
     newNode->player = playerNum;
     newNode->next = graph->adjacencyList[vertexOne];
     graph->adjacencyList[vertexOne] = newNode;
-}
-
-void clearVisited(struct Graph *graph) {
-    int numVertices = graph->numVertices;
-    for(int i = 0; i < numVertices; i++) {
-        graph->visited[i] = 0;
-    }
 }
 
 void updateEdge(struct Graph *graph, int vertexOne, int vertexTwo, char PlayerNum, int edgeToAdd) {
@@ -90,6 +82,13 @@ int DFS(struct Graph *graph, int vertex) {
     return 0;
 }
 
+void clearVisited(struct Graph *graph) {
+    int numVertices = graph->numVertices;
+    for(int i = 0; i < numVertices; i++) {
+        graph->visited[i] = 0;
+    }
+}
+
 int adjLength(struct Graph *graph, int vertex) {
     int length = 0;
     struct node *adjacencyList = graph->adjacencyList[vertex];
@@ -99,22 +98,4 @@ int adjLength(struct Graph *graph, int vertex) {
         temp = temp->next;
     }
     return length;
-}
-
-void printGraph(struct Graph* graph)
-{
-    clear();
-    int v;
-    for (v = 0; v < graph->numVertices; v++)
-    {
-        struct node* temp = graph->adjacencyList[v];
-        printw("\n Adjacency list of vertex %d ", v);
-        while (temp)
-        {
-            printw("%d -> ", temp->vertex);
-            temp = temp->next;
-        }
-    }
-    refresh();
-    getch();
 }
