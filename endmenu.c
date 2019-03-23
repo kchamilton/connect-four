@@ -3,6 +3,7 @@
 //
 
 #include "gamestats.h"
+#include "inputkeys.h"
 #include "mainmenu.h"
 #include "endmenu.h"
 #include <stdlib.h>
@@ -25,9 +26,7 @@ int replayOptions() {
         return answer;
     else {
         printw("\nError, please enter 1, 2, or 3 to proceed.\n");
-        printw("Press any key to continue.");
-        refresh();
-        getch();
+        getEnter();
         return 0 + replayOptions();
     }
 }
@@ -42,18 +41,14 @@ int likeToResize() {
         else if(answer == 'n' || answer == 'N')
             return 0;
         else {
-            printw("\nError, please enter y to change the game board dimensions or n to leave them the same.");
-            printw("\nPress any key to continue.");
-            refresh();
-            getch();
+            printw("\nError, please enter y to change the game board dimensions or n to leave them the same.\n");
+            getEnter();
             return 0 + likeToResize();
         }
     }
     else {
-        printw("\nError, please enter y to change the game board dimensions or n to leave them the same.");
-        printw("\nPress any key to continue.");
-        refresh();
-        getch();
+        printw("\nError, please enter y to change the game board dimensions or n to leave them the same.\n");
+        getEnter();
         return 0 + likeToResize();
     }
 }

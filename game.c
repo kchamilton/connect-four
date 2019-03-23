@@ -5,6 +5,7 @@
 #include "gamestats.h"
 #include "gameboard.h"
 #include "graph.h"
+#include "inputkeys.h"
 #include "game.h"
 #include <stdlib.h>
 #include <curses.h>
@@ -156,9 +157,7 @@ void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, i
                 }
                 else {
                     printw("\nThe column is full please choose a different one.\n");
-                    printw("Press any key to continue.");
-                    refresh();
-                    getch();
+                    getEnter();
                     humanMove(gameBoard, playerMove, graph, x, y, playerNum, mode, scoreOne, scoreTwo, playerPiece);
                 }
             default:
@@ -183,9 +182,8 @@ void makeAiMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, 
     updatePlayerMove(gameBoard, playerMove, x, y, 0, 2, scoreOne, scoreTwo, xPos, 'X');
     updateGameBoard(gameBoard, playerMove, x, y, xPos, yPos, 2, 'X');
     printScore(scoreOne, scoreTwo);
-    printw("\nPlayer 2 has made their move. Press enter to continue.\n");
-    refresh();
-    getch();
+    printw("\nPlayer 2 has made their move.\n");
+    getEnter();
     addSurroundingPieces(gameBoard, graph, x, y, xPos, yPos, 'X', 2);
 }
 
@@ -240,17 +238,13 @@ void aiMove(char **gameBoard, char *playerMove, struct Graph *playerOneGraph, st
 void congratulateWinner(int playerNum){
     clear();
     printw("Player %d has won the game!\n", playerNum);
-    printw("Press any key to continue.");
-    refresh();
-    getch();
+    getEnter();
 }
 
 void tieGame() {
     clear();
     printw("The game is a tie.\n");
-    printw("Press any key to continue.");
-    refresh();
-    getch();
+    getEnter();
 }
 
 void playGame(struct GameStats *gameStats) {

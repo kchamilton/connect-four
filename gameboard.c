@@ -10,7 +10,7 @@
 void printHeader(int playerNum) {
     clear();
     printw("Connect Four\n");
-    printw("Use the left and right arrow keys to select the column, press the down arrow key to drop the piece.\n");
+    printw("Use the left and right arrow keys to select the column, \npress the down arrow key to drop the piece.\n");
     printw("Player %d's turn.\n\n", playerNum);
     refresh();
 }
@@ -79,8 +79,7 @@ char **createGameBoard(int x, int y) {
     return gameBoard;
 }
 
-void
-updateGameBoard(char **gameBoard, char *playerMove, int x, int y, int xPos, int yPos, int playerNum, char playerPiece) {
+void updateGameBoard(char **gameBoard, char *playerMove, int x, int y, int xPos, int yPos, int playerNum, char playerPiece) {
     gameBoard[yPos][(xPos * 3) + 1] = playerPiece;
     clear();
     printHeader(playerNum);

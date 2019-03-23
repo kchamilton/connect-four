@@ -2,6 +2,7 @@
 #include "mainmenu.h"
 #include "endmenu.h"
 #include "game.h"
+#include "inputkeys.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <curses.h>
@@ -43,18 +44,14 @@ int newGame() {
         else if(answer == 'n' || answer == 'N')
             return 0;
         else {
-            printw("\nError, please enter y to start a new game or n to exit.");
-            printw("\nPress any key to continue.");
-            refresh();
-            getch();
+            printw("\nError, please enter y to start a new game or n to exit.\n");
+            getEnter();
             return 0 + newGame();
         }
     }
     else {
-        printw("\nError, please enter y to start a new game or n to exit.");
-        printw("\nPress any key to continue.");
-        refresh();
-        getch();
+        printw("\nError, please enter y to start a new game or n to exit.\n");
+        getEnter();
         return 0 + newGame();
     }
 }
