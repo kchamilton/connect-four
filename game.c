@@ -10,11 +10,11 @@
 #include <curses.h>
 #include <ncurses.h>
 
-int horizontalCheck(char **gameBoard, int x, int y, int playerNum) {
+int horizontalCheck(char **gameBoard, int x, int y, char playerPiece) {
     for(int i = 0; i < y; i++) {
         int count = 0;
         for(int j = 0; j < x; j++) {
-            if(gameBoard[i][(j * 3) + 1] == (playerNum + '0'))
+            if(gameBoard[i][(j * 3) + 1] == playerPiece)
                 count++;
             else
                 count = 0;
@@ -25,11 +25,11 @@ int horizontalCheck(char **gameBoard, int x, int y, int playerNum) {
     return 0;
 }
 
-int verticalCheck(char **gameBoard, int x, int y, int playerNum) {
+int verticalCheck(char **gameBoard, int x, int y, char playerPiece) {
     for(int i = 0; i < x; i ++) {
         int count = 0;
         for(int j = 0; j < y; j++) {
-            if(gameBoard[j][(i * 3) + 1] == (playerNum + '0'))
+            if(gameBoard[j][(i * 3) + 1] == playerPiece)
                 count++;
             else
                 count = 0;
@@ -40,11 +40,11 @@ int verticalCheck(char **gameBoard, int x, int y, int playerNum) {
     return 0;
 }
 
-int diagonalCheck(char **gameBoard, int x, int y, int playerNum) {
+int diagonalCheck(char **gameBoard, int x, int y, char playerPiece) {
     for(int i = 0; i < y; i++) {
         int tempX = 0, tempY = i, count = 0;
         while(tempX < x && tempY < y) {
-            if(gameBoard[tempY][(tempX * 3) + 1] == (playerNum + '0'))
+            if(gameBoard[tempY][(tempX * 3) + 1] == playerPiece)
                 count++;
             else
                 count = 0;
@@ -57,7 +57,7 @@ int diagonalCheck(char **gameBoard, int x, int y, int playerNum) {
     for(int i = 1; i < x; i++) {
         int tempX = i, tempY = 0, count = 0;
         while(tempX < x && tempY < y) {
-            if(gameBoard[tempY][(tempX * 3) + 1] == (playerNum + '0'))
+            if(gameBoard[tempY][(tempX * 3) + 1] == playerPiece)
                 count++;
             else
                 count = 0;
@@ -70,7 +70,7 @@ int diagonalCheck(char **gameBoard, int x, int y, int playerNum) {
     for(int i = 0; i < y; i++) {
         int tempX = x - 1, tempY = i, count = 0;
         while(tempX >= 0 && tempY < y) {
-            if(gameBoard[tempY][(tempX * 3) + 1] == (playerNum + '0'))
+            if(gameBoard[tempY][(tempX * 3) + 1] == playerPiece)
                 count++;
             else
                 count = 0;
@@ -83,7 +83,7 @@ int diagonalCheck(char **gameBoard, int x, int y, int playerNum) {
     for(int i = x - 2; i > 0; i--) {
         int tempX = i, tempY = 0, count = 0;
         while(tempX >= 0 && tempY < y) {
-            if(gameBoard[tempY][(tempX * 3) + 1] == (playerNum + '0'))
+            if(gameBoard[tempY][(tempX * 3) + 1] == playerPiece)
                 count++;
             else
                 count = 0;
@@ -96,32 +96,32 @@ int diagonalCheck(char **gameBoard, int x, int y, int playerNum) {
     return 0;
 }
 
-int checkForWin(char **gameBoard, int x, int y, int playerNum) {
-    return (horizontalCheck(gameBoard, x, y, playerNum) || verticalCheck(gameBoard, x, y, playerNum) || diagonalCheck(gameBoard, x, y, playerNum));
+int checkForWin(char **gameBoard, int x, int y, char playerPiece) {
+    return (horizontalCheck(gameBoard, x, y, playerPiece) || verticalCheck(gameBoard, x, y, playerPiece) || diagonalCheck(gameBoard, x, y, playerPiece));
 }
 
-void addSurroundingPieces(char **gameBoard, struct Graph *graph, int x, int y, int xPos, int yPos, char playerNum, int edgeToAdd) {
-    if((xPos-1 >= 0) && (yPos-1 >= 0) && gameBoard[yPos-1][((xPos-1) * 3) + 1] == playerNum)
-        updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos-1)) + (xPos-1)), playerNum, edgeToAdd);
-    //if((yPos-1 >= 0) && gameBoard[yPos-1][(xPos * 3) + 1] == playerNum)
-        //updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos-1)) + xPos), gameBoard[yPos-1][(xPos * 3) + 1], edgeToAdd);
-    if((xPos+1 < x) && (yPos-1 >= 0) && gameBoard[yPos-1][((xPos+1) * 3) + 1] == playerNum)
-        updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos-1)) + (xPos+1)), playerNum, edgeToAdd);
-    if((xPos-1 >= 0) && gameBoard[yPos][((xPos-1) * 3) + 1] == playerNum)
-        updateEdge(graph, ((x * yPos) + xPos), ((x * yPos) + (xPos-1)), playerNum, edgeToAdd);
-    if((xPos+1 < x) && gameBoard[yPos][((xPos+1) * 3) + 1] == playerNum)
-        updateEdge(graph, ((x * yPos) + xPos), ((x * yPos) + (xPos-1)), playerNum, edgeToAdd);
-    if((xPos-1 >= 0) && (yPos+1 < y) && gameBoard[yPos+1][((xPos-1) * 3) + 1] == playerNum)
-        updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos+1)) + (xPos-1)), playerNum, edgeToAdd);
-    if((yPos+1 < y) && gameBoard[yPos+1][(xPos * 3) + 1] == playerNum)
-        updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos+1)) + xPos), playerNum, edgeToAdd);
-    if((xPos+1 < x) && (yPos+1 < y) && gameBoard[yPos+1][((xPos+1) * 3) + 1] == playerNum)
-        updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos+1)) + (xPos+1)), playerNum, edgeToAdd);
+void addSurroundingPieces(char **gameBoard, struct Graph *graph, int x, int y, int xPos, int yPos, char playerPiece,
+                          int edgeToAdd) {
+    if((xPos-1 >= 0) && (yPos-1 >= 0) && gameBoard[yPos-1][((xPos-1) * 3) + 1] == playerPiece)
+        updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos-1)) + (xPos-1)), edgeToAdd);
+    if((xPos+1 < x) && (yPos-1 >= 0) && gameBoard[yPos-1][((xPos+1) * 3) + 1] == playerPiece)
+        updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos-1)) + (xPos+1)), edgeToAdd);
+    if((xPos-1 >= 0) && gameBoard[yPos][((xPos-1) * 3) + 1] == playerPiece)
+        updateEdge(graph, ((x * yPos) + xPos), ((x * yPos) + (xPos-1)), edgeToAdd);
+    if((xPos+1 < x) && gameBoard[yPos][((xPos+1) * 3) + 1] == playerPiece)
+        updateEdge(graph, ((x * yPos) + xPos), ((x * yPos) + (xPos-1)), edgeToAdd);
+    if((xPos-1 >= 0) && (yPos+1 < y) && gameBoard[yPos+1][((xPos-1) * 3) + 1] == playerPiece)
+        updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos+1)) + (xPos-1)), edgeToAdd);
+    if((yPos+1 < y) && gameBoard[yPos+1][(xPos * 3) + 1] == playerPiece)
+        updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos+1)) + xPos), edgeToAdd);
+    if((xPos+1 < x) && (yPos+1 < y) && gameBoard[yPos+1][((xPos+1) * 3) + 1] == playerPiece)
+        updateEdge(graph, ((x * yPos) + xPos), ((x * (yPos+1)) + (xPos+1)), edgeToAdd);
 }
 
-void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, int y, int playerNum, int mode, int scoreOne, int scoreTwo) {
+void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, int y, int playerNum, int mode, int scoreOne,
+               int scoreTwo, char playerPiece) {
     int key, placed = 0, xPos = 0;
-    setPlayerMove(playerMove, x);
+    setPlayerMove(playerMove, x, playerPiece);
     printHeader(playerNum);
     printPlayerMove(playerMove, x);
     printGameBoard(gameBoard, x, y);
@@ -133,11 +133,11 @@ void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, i
         switch (key) {
             case KEY_LEFT:
                 if(xPos > 0)
-                    updatePlayerMove(gameBoard, playerMove, x, y, xPos--, playerNum, scoreOne, scoreTwo, xPos);
+                    updatePlayerMove(gameBoard, playerMove, x, y, xPos--, playerNum, scoreOne, scoreTwo, xPos, playerPiece);
                 break;
             case KEY_RIGHT:
                 if(xPos < x - 1)
-                    updatePlayerMove(gameBoard, playerMove, x, y, xPos++, playerNum, scoreOne, scoreTwo, xPos);
+                    updatePlayerMove(gameBoard, playerMove, x, y, xPos++, playerNum, scoreOne, scoreTwo, xPos, playerPiece);
                 break;
             case KEY_DOWN:
                 placed = 1;
@@ -149,10 +149,9 @@ void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, i
                         else
                             yPos--;
                     }
-                    updateGameBoard(gameBoard, playerMove, x, y, xPos, yPos, playerNum);
+                    updateGameBoard(gameBoard, playerMove, x, y, xPos, yPos, playerNum, playerPiece);
                     if(mode == 2) {
-                        addSurroundingPieces(gameBoard, graph, x, y, xPos, yPos, '1', 2);
-                        //printGraph(graph);
+                        addSurroundingPieces(gameBoard, graph, x, y, xPos, yPos, playerPiece, 2);
                     }
                 }
                 else {
@@ -160,7 +159,7 @@ void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, i
                     printw("Press any key to continue.");
                     refresh();
                     getch();
-                    humanMove(gameBoard, playerMove, graph, x, y, playerNum, mode, scoreOne, scoreTwo);
+                    humanMove(gameBoard, playerMove, graph, x, y, playerNum, mode, scoreOne, scoreTwo, playerPiece);
                 }
             default:
                 break;
@@ -169,9 +168,9 @@ void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, i
     keypad(stdscr, FALSE);
 }
 
-int willWin(char **gameBoard, int x, int y, int playerNum, int xPos, int yPos) {
+int willWin(char **gameBoard, int x, int y, char playerNum, int xPos, int yPos) {
     int won = 0;
-    gameBoard[yPos][(xPos * 3) + 1] = playerNum + '0';
+    gameBoard[yPos][(xPos * 3) + 1] = playerNum;
     if(checkForWin(gameBoard, x, y, playerNum))
         won = 1;
     gameBoard[yPos][(xPos * 3) + 1] = ' ';
@@ -180,14 +179,14 @@ int willWin(char **gameBoard, int x, int y, int playerNum, int xPos, int yPos) {
 
 void makeAiMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, int y,
                 int xPos, int yPos, int scoreOne, int scoreTwo) {
-    setPlayerMove(playerMove, x);
-    updatePlayerMove(gameBoard, playerMove, x, y, 0, 2, scoreOne, scoreTwo, xPos);
-    updateGameBoard(gameBoard, playerMove, x, y, xPos, yPos, 2);
+    setPlayerMove(playerMove, x, 'X');
+    updatePlayerMove(gameBoard, playerMove, x, y, 0, 2, scoreOne, scoreTwo, xPos, 'X');
+    updateGameBoard(gameBoard, playerMove, x, y, xPos, yPos, 2, 'X');
     printScore(scoreOne, scoreTwo);
     printw("\nPlayer 2 has made their move. Press enter to continue.\n");
     refresh();
     getch();
-    addSurroundingPieces(gameBoard, graph, x, y, xPos, yPos, '2', 2);
+    addSurroundingPieces(gameBoard, graph, x, y, xPos, yPos, 'X', 2);
 }
 
 void aiMove(char **gameBoard, char *playerMove, struct Graph *playerOneGraph, struct Graph *playerTwoGraph, int x, int y, int scoreOne, int scoreTwo) {
@@ -197,16 +196,16 @@ void aiMove(char **gameBoard, char *playerMove, struct Graph *playerOneGraph, st
         while(!moveFound && currentY >= 0) {
             if(gameBoard[currentY][(i * 3) + 1] == ' ') {
                 moveFound = 1;
-                if(willWin(gameBoard, x, y, 2, i, currentY)) {
+                if(willWin(gameBoard, x, y, 'X', i, currentY)) {
                     makeAiMove(gameBoard, playerMove, playerTwoGraph, x, y, i, currentY, scoreOne, scoreTwo);
                     return;
                 }
-                else if(willWin(gameBoard, x, y, 1, i, currentY)) {
+                else if(willWin(gameBoard, x, y, 'O', i, currentY)) {
                     makeAiMove(gameBoard, playerMove, playerTwoGraph, x, y, i, currentY, scoreOne, scoreTwo);
                     return;
                 }
-                addSurroundingPieces(gameBoard, playerOneGraph, x, y, i, currentY, '1', 1);
-                addSurroundingPieces(gameBoard, playerTwoGraph, x, y, i, currentY, '2', 1);
+                addSurroundingPieces(gameBoard, playerOneGraph, x, y, i, currentY, 'O', 1);
+                addSurroundingPieces(gameBoard, playerTwoGraph, x, y, i, currentY, 'X', 1);
                 dfsLength1 = DFS(playerOneGraph, (x * currentY) + i);
                 dfsLength2 = DFS(playerTwoGraph, (x * currentY) + i);
                 adjLength1 = adjLength(playerOneGraph, (x * currentY) + i);
@@ -270,15 +269,17 @@ void playGame(struct GameStats *gameStats) {
             gameWon = 1;
             tieGame();
         }
-        else if(!checkForWin(gameBoard, x, y, 2)) {
-            humanMove(gameBoard, playerMove, playerOneGraph, x, y, 1, gameStats->mode, gameStats->playerOneScore, gameStats->playerTwoScore);
+        else if(!checkForWin(gameBoard, x, y, 'X')) {
+            humanMove(gameBoard, playerMove, playerOneGraph, x, y, 1, gameStats->mode, gameStats->playerOneScore,
+                      gameStats->playerTwoScore, 'O');
             if(boardFull(gameBoard, x)) {
                 gameWon = 1;
                 tieGame();
             }
-            else if (!checkForWin(gameBoard, x, y, 1) && mode == 1)
-                humanMove(gameBoard, playerMove, playerTwoGraph, x, y, 2, gameStats->mode, gameStats->playerOneScore, gameStats->playerTwoScore);
-            else if(!checkForWin(gameBoard, x, y, 1) && mode == 2)
+            else if (!checkForWin(gameBoard, x, y, 'O') && mode == 1)
+                humanMove(gameBoard, playerMove, playerTwoGraph, x, y, 2, gameStats->mode, gameStats->playerOneScore,
+                          gameStats->playerTwoScore, 'X');
+            else if(!checkForWin(gameBoard, x, y, 'O') && mode == 2)
                 aiMove(gameBoard, playerMove, playerOneGraph, playerTwoGraph, x, y, gameStats->playerOneScore, gameStats->playerTwoScore);
             else {
                 updatePlayerOneScore(gameStats);

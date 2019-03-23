@@ -14,7 +14,7 @@ struct Graph {
 struct Graph *createGraph(int num);
 void freeAdjacencyList(struct Graph *graph, int vertex);
 void freeGraph(struct Graph *graph);
-void updateEdge(struct Graph *graph, int vertexOne, int vertexTwo, char PlayerNum, int edgeToAdd);
+void updateEdge(struct Graph *graph, int vertexOne, int vertexTwo, int edgeToAdd);
 int DFS(struct Graph *graph, int vertex);
 void clearVisited(struct Graph *graph);
 int adjLength(struct Graph *graph, int vertex);

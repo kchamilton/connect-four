@@ -10,14 +10,12 @@
 
 struct node {
     int vertex;
-    char player;
     struct node* next;
 };
 
 struct node *createNode(int num) {
     struct node* newNode = malloc(sizeof(struct node));
     newNode->vertex = num;
-    newNode->player = ' ';
     newNode->next = NULL;
     return newNode;
 }
@@ -39,6 +37,7 @@ void freeAdjacencyList(struct Graph *graph, int vertex) {
         struct node *temp;
         temp = graph->adjacencyList[vertex];
         graph->adjacencyList[vertex] = temp->next;
+        free(temp);
     }
 }
 
@@ -52,20 +51,19 @@ void freeGraph(struct Graph *graph) {
 }
 
 //add edge between vertex one and two - only vertex one points to two, two doesn't point to one
-void addEdge(struct Graph *graph, int vertexOne, int vertexTwo, char playerNum) {
+void addEdge(struct Graph *graph, int vertexOne, int vertexTwo) {
     struct node *newNode = createNode(vertexTwo);
-    newNode->player = playerNum;
     newNode->next = graph->adjacencyList[vertexOne];
     graph->adjacencyList[vertexOne] = newNode;
 }
 
-void updateEdge(struct Graph *graph, int vertexOne, int vertexTwo, char PlayerNum, int edgeToAdd) {
+void updateEdge(struct Graph *graph, int vertexOne, int vertexTwo, int edgeToAdd) {
     if(edgeToAdd == 1) {
-        addEdge(graph, vertexOne, vertexTwo, PlayerNum);
+        addEdge(graph, vertexOne, vertexTwo);
     }
     else {
-        addEdge(graph, vertexOne, vertexTwo, PlayerNum);
-        addEdge(graph, vertexTwo, vertexOne, PlayerNum);
+        addEdge(graph, vertexOne, vertexTwo);
+        addEdge(graph, vertexTwo, vertexOne);
     }
 }
 
