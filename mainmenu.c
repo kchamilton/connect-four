@@ -9,10 +9,7 @@
 #include <ncurses.h>
 
 
-/*
- * The selectMode() function gets the desired playing mode from the user.
- * The function is passed the struct gameStats in order to update and store the desired mode.
- */
+//The selectMode() function gets the desired playing mode from the user.
 void selectMode(struct GameStats *gameStats) {
     int mode;
     clear();
@@ -22,6 +19,7 @@ void selectMode(struct GameStats *gameStats) {
     printw("\tPlayer vs. Computer (2)\n");
     printw("Enter mode here: ");
     refresh();
+    //if the value entered is an integer
     if(scanw("%d", &mode)) {
         //store mode
         if (mode == 1 || mode == 2)
@@ -43,10 +41,7 @@ void selectMode(struct GameStats *gameStats) {
     }
 }
 
-/*
- * The selectXDimension() function gets the desired board width from the user.
- * The function is passed the struct gameStats in order to update and store the desired board width.
- */
+//The selectXDimension() function gets the desired board width from the user.
 void selectXDimension(struct GameStats *gameStats) {
     const int maxXDimension = 40;
     int x;
@@ -54,6 +49,7 @@ void selectXDimension(struct GameStats *gameStats) {
     printw("Welcome to Connect Four!\n");
     printw("Please enter the width of the game board: ", maxXDimension);
     refresh();
+    //if the value inputted is an integer
     if(scanw("%d", &x)) {
         //store x dimension
         if(x <= maxXDimension && x >= 4)
@@ -79,10 +75,7 @@ void selectXDimension(struct GameStats *gameStats) {
     }
 }
 
-/*
- * The selectYDimension() function gets the desired board height from the user.
- * The function is passed the struct gameStats in order to update and store the desired board height.
- */
+//The selectYDimension() function gets the desired board height from the user.
 void selectYDimension(struct GameStats *gameStats) {
     const int maxYDimension = 40;
     int y;
@@ -90,6 +83,7 @@ void selectYDimension(struct GameStats *gameStats) {
     printw("Welcome to Connect Four!\n");
     printw("Please enter the height of the game board: ", maxYDimension);
     refresh();
+    //if the value inputted is an integer
     if(scanw("%d", &y)) {
         //store y dimension
         if(y <= maxYDimension && y >= 4)
@@ -115,19 +109,13 @@ void selectYDimension(struct GameStats *gameStats) {
     }
 }
 
-/*
- * The selectBoardSize() function gets user input for the desired board size.
- * The function is passed the struct gameStats in order to update and store the desired board dimensions.
- */
+//The selectBoardSize() function gets user input for the desired board size.
 void selectBoardSize(struct GameStats *gameStats) {
     selectXDimension(gameStats);
     selectYDimension(gameStats);
 }
 
-/*
- * The executeMainMenu() function gets user input for the desired game mode and board size.
- * The function is passed the struct gameStats in order to update and store the desired mode and board dimensions.
- */
+//The executeMainMenu() function gets user input for the desired game mode and board size.
 void executeMainMenu(struct GameStats *gameStats) {
     selectMode(gameStats);
     selectBoardSize(gameStats);

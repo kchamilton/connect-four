@@ -12,10 +12,7 @@
 #include <curses.h>
 #include <ncurses.h>
 
-/*
- * The printHeader() function prints the main game header and directions on how to add the game piece to the board.
- * The function is passed playerNum, the player's number whose turn it is.
- */
+//The printHeader() function prints the main game header and directions on how to add the game piece to the board.
 void printHeader(int playerNum) {
     clear();
     printw("Connect Four\n");
@@ -24,38 +21,27 @@ void printHeader(int playerNum) {
     refresh();
 }
 
-/*
- * The printScore() function prints the current score of the game.
- * The function is passed playerOneScore, player one's current score, and playerTwoScore, player two's current score.
- */
+//The printScore() function prints the current score of the game.
 void printScore(int playerOneScore, int playerTwoScore) {
     printw("\nPlayer 1 (O): %d  vs.  Player 2 (X): %d\n", playerOneScore, playerTwoScore);
 }
 
-/*
- * The createPlayerMove() function allocates space for the player move array.
- * The function is passed x, the width of the board.
- */
+/* The createPlayerMove() function allocates space for the player move array.
+ * The function returns a pointer to the new playerMove
+*/
 char *createPlayerMove(int x) {
     char *playerMove = malloc(x * 3 * sizeof(char));
     return playerMove;
 }
 
-/*
- * The setPlayerMove() function resets the player move array to display the game piece above the first column.
- * The function is passed a pointer to playerMove, the player move array, x, the width of the board,
- * and playerPiece, the char that represents the current player's game piece.
- */
+//The setPlayerMove() function resets the player move array to display the game piece above the first column.
 void setPlayerMove(char *playerMove, int x, char playerPiece) {
     for(int i = 0; i < x * 3; i ++)
         playerMove[i] = ' ';
     playerMove[1] = playerPiece;
 }
 
-/*
- * The printPlayerMove() function prints the player move array to show which column the player's piece is currently above.
- * The function is passed a pointer to playerMove, the player move array, and x, the width of the board.
- */
+//The printPlayerMove() function prints the player move array to show which column the player's piece is currently above.
 void printPlayerMove(char *playerMove, int x) {
     for(int i = 0; i < x * 3; i++)
         printw("%c", playerMove[i]);
@@ -63,12 +49,7 @@ void printPlayerMove(char *playerMove, int x) {
     refresh();
 }
 
-/*
- * The updatePlayerMove() function updates the location of the player piece over the game board as the user moves it back and forth.
- * The function is passed a pointer to the game board to reprint, a pointer to the player move array to update, the board width x, the board height y,
- * the location of the piece currently, the player number playerNum, the player scores scoreOne and scoreTwo to reprint the scores,
- * the location to move the piece to newLocation, and the char representing the player piece.
- */
+//The updatePlayerMove() function updates the location of the player piece over the game board as the player moves it back and forth.
 void updatePlayerMove(char **gameBoard, char *playerMove, int x, int y, int location, int playerNum, int scoreOne,
                       int scoreTwo, int newLocation, char playerPiece) {
     //set previous position to ' '
@@ -83,20 +64,17 @@ void updatePlayerMove(char **gameBoard, char *playerMove, int x, int y, int loca
     refresh();
 }
 
-/*
- * The freePlayerMove() function frees the memory allocated for the playerMove array.
- * The function is passed a pointer to the playerMove array to free.
- */
+//The freePlayerMove() function frees the memory allocated for the playerMove array.
 void freePlayerMove(char *playerMove) {
     free(playerMove);
 }
 
-/*
- * The createGameBoard() function allocates space for the game board and initializes the setup of the board.
- * The function is passed x, the board width, and y, the board height.
- */
+/* The createGameBoard() function allocates space for the game board and initializes the setup of the board.
+ * The function returns a pointer to the new game board.
+*/
 char **createGameBoard(int x, int y) {
     char **gameBoard;
+    //allocate memory for the game board
     gameBoard = malloc(y * sizeof(char *));
     for(int i = 0; i < y; i++) {
         gameBoard[i] = malloc(x * 3 * sizeof(char));
@@ -125,12 +103,7 @@ char **createGameBoard(int x, int y) {
     return gameBoard;
 }
 
-/*
- * The updateGameBoard() function adds a player piece to the game board and then reprints the header, player move array, and game board.
- * The function is passed a pointer to the game board, a pointer to the player move array, the x dimension of the board,
- * the y dimension of the board, the xPos of the piece, the yPos of the piece, the player number playerNum,
- * and the char playerPiece that represents the the player piece.
- */
+//The updateGameBoard() function adds a player piece to the game board and then reprints the header, player move array, and game board.
 void updateGameBoard(char **gameBoard, char *playerMove, int x, int y, int xPos, int yPos, int playerNum, char playerPiece) {
     gameBoard[yPos][(xPos * 3) + 1] = playerPiece;
     clear();
@@ -139,10 +112,7 @@ void updateGameBoard(char **gameBoard, char *playerMove, int x, int y, int xPos,
     printGameBoard(gameBoard, x, y);
 }
 
-/*
- * The boardFull() function checks to see if the game board is full and returns 1 if it is, 0 if not.
- * The function is passed a pointer to the game board and x, the width of the board.
- */
+//The boardFull() function checks to see if the game board is full and returns 1 if it is, 0 if there is still space to play.
 int boardFull(char **gameBoard, int x) {
     //assume board is full
     int full = 1;
@@ -154,10 +124,7 @@ int boardFull(char **gameBoard, int x) {
     return full;
 }
 
-/*
- * The printGameBoard() function prints the game board.
- * The function is passed a pointer to the game board, the board width x, and the board height y.
- */
+//The printGameBoard() function prints the game board.
 void printGameBoard(char **gameBoard, int x, int y) {
     for(int i = 0; i < y; i++){
         for(int j = 0; j < x * 3; j++){
@@ -168,10 +135,7 @@ void printGameBoard(char **gameBoard, int x, int y) {
     refresh();
 }
 
-/*
- * The freeGameBoard() function frees the memory allocated for the game board.
- * The function is passed a pointer to the game board and the board height y.
- */
+//The freeGameBoard() function frees the memory allocated for the game board.
 void freeGameBoard(char **gameBoard, int y) {
     for(int i = 0; i < y; i++){
         free(gameBoard[i]);

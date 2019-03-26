@@ -21,7 +21,7 @@ struct node {
 
 /*
  * The createNode() function allocates space for a new node, assigns the vertex, and sets the pointer next to NULL.
- * The function is passed the integer num, the vertex number, and returns a pointer to the new node.
+ * The function returns a pointer to the new node.
  * https://www.programiz.com/dsa/graph-dfs
  */
 struct node *createNode(int num) {
@@ -42,6 +42,7 @@ struct Graph *createGraph(int num) {
     graph->numVertices = num;
     graph->adjacencyList = malloc(num * sizeof(struct node *));
     graph->visited = malloc(num * sizeof(int));
+    //increment through the adjacency list to set pointers to NULL, and set visited at the same location to 0
     for(int i = 0; i < num; i++) {
         graph->adjacencyList[i] = NULL;
         graph->visited[i] = 0;
@@ -49,10 +50,7 @@ struct Graph *createGraph(int num) {
     return graph;
 }
 
-/*
- * The freeAdjacencyList() function frees the memory allocated for the nodes at a particular vertex in the adjacency list.
- * The function takes in a pointer to a graph, and the vertex number vertex to free the adjacency list at.
- */
+//The freeAdjacencyList() function frees the memory allocated for the nodes at a particular vertex in the adjacency list.
 void freeAdjacencyList(struct Graph *graph, int vertex) {
     //while there is still a node in the adjacency list at the vertex
     while(graph->adjacencyList[vertex] != NULL) {
@@ -63,10 +61,7 @@ void freeAdjacencyList(struct Graph *graph, int vertex) {
     }
 }
 
-/*
- * The freeGraph() function frees the memory allocated for a graph and its included visited array and adjacency list.
- * The function is passed a pointer to the graph to be freed.
- */
+//The freeGraph() function frees the memory allocated for a graph and its included visited array and adjacency list.
 void freeGraph(struct Graph *graph) {
     free(graph->visited);
     for(int i = 0; i < graph->numVertices; i++) {
@@ -79,8 +74,6 @@ void freeGraph(struct Graph *graph) {
 /*
  * The addEdge() function adds an edge between vertex one and two in a graph, but only in one direction
  * (vertex one points to two, but two doesn't point to one unless the function is called again with the vertices switched)
- * The function is passed a pointer to a graph, the vertex vertexOne to add the edge to,
- * and the vertex vertexTwo to add to the adjacency list.
  * https://www.programiz.com/dsa/graph-dfs
  */
 void addEdge(struct Graph *graph, int vertexOne, int vertexTwo) {
@@ -91,8 +84,7 @@ void addEdge(struct Graph *graph, int vertexOne, int vertexTwo) {
 
 /*
  * The updateEdge() function allows edges to be added to a graph either from only vertex A to B, or from A to B and B to A.
- * The function is passed a pointer to the graph to be updated, the first vertex vertexOne, the second vertex vertexTwo,
- * and either 1 or 2 through edgeToAdd which determines if the edge is added only A to B (1) or A to B and B to A (2).
+ * The function is passed edgeToAdd which is either 1 or 2 and determines if the edge is added only A to B (1) or A to B and B to A (2).
  */
 void updateEdge(struct Graph *graph, int vertexOne, int vertexTwo, int edgeToAdd) {
     //an edge is added vertexOne to vertexTwo
@@ -108,13 +100,14 @@ void updateEdge(struct Graph *graph, int vertexOne, int vertexTwo, int edgeToAdd
 
 /*
  * The DFS() function does a depth first search of a graph and returns the length of the DFS.
- * The function is passed a pointer to the graph, and the vertex of the node to complete the DFS on.
  * https://www.programiz.com/dsa/graph-dfs
  */
 int DFS(struct Graph *graph, int vertex) {
     struct node *adjacencyList = graph->adjacencyList[vertex];
     struct node *temp = adjacencyList;
+    //while there is still a node in the adjacency list
     while(temp != NULL) {
+        //set visited to 1 to prevent revisiting the node
         graph->visited[vertex] = 1;
         int connectedVertex = temp->vertex;
         //if the next node hasn't been visited return 1 + DFS() on the next node
@@ -126,9 +119,9 @@ int DFS(struct Graph *graph, int vertex) {
 }
 
 /*
- * The clearVisited() function resets the visited array of a graph to all 0's.
- * The function is passed a pointer to the graph.
- */
+ * The clearVisited() function resets the visited array of a graph to all 0's
+ * in order to make it possible to run another DFS on the same graph later.
+ * */
 void clearVisited(struct Graph *graph) {
     int numVertices = graph->numVertices;
     for(int i = 0; i < numVertices; i++) {
@@ -136,10 +129,7 @@ void clearVisited(struct Graph *graph) {
     }
 }
 
-/*
- * The adjLength() function returns the length of the adjacency matrix at a specified vertex in a graph.
- * The function is passed a pointer to the graph and the vertex.
- */
+//The adjLength() function returns the length of the adjacency matrix at a specified vertex in a graph.
 int adjLength(struct Graph *graph, int vertex) {
     int length = 0;
     struct node *adjacencyList = graph->adjacencyList[vertex];

@@ -14,8 +14,6 @@
 
 /*
  * The horizontalCheck() function checks for a horizontal win in the game board for the provided player piece.
- * The function is passed a pointer to the game board, x - the width of the board, y - the height of the board,
- * and playerPiece - the char representing the player piece.
  * The function returns 1 if there is a win, 0 if not.
  */
 int horizontalCheck(char **gameBoard, int x, int y, char playerPiece) {
@@ -40,8 +38,6 @@ int horizontalCheck(char **gameBoard, int x, int y, char playerPiece) {
 
 /*
  * The verticalCheck() function checks for a vertical win in the game board for the provided player piece.
- * The function is passed a pointer to the game board, x - the width of the board, y - the height of the board,
- * and playerPiece - the char representing the player piece.
  * The function returns 1 if there is a win, 0 if not.
  */
 int verticalCheck(char **gameBoard, int x, int y, char playerPiece) {
@@ -66,8 +62,6 @@ int verticalCheck(char **gameBoard, int x, int y, char playerPiece) {
 
 /*
  * The diagonalCheck() function checks for a diagonal win in the game board for the provided player piece.
- * The function is passed a pointer to the game board, x - the width of the board, y - the height of the board,
- * and playerPiece - the char representing the player piece.
  * The function returns 1 if there is a win, 0 if not.
  */
 int diagonalCheck(char **gameBoard, int x, int y, char playerPiece) {
@@ -148,8 +142,6 @@ int diagonalCheck(char **gameBoard, int x, int y, char playerPiece) {
 
 /*
  * The checkForWin() function checks for a win in the game board for the provided player piece.
- * The function is passed a pointer to the game board, x - the width of the board, y - the height of the board,
- * and playerPiece - the char representing the player piece.
  * The function returns 1 if there is a win, 0 if not.
  */
 int checkForWin(char **gameBoard, int x, int y, char playerPiece) {
@@ -159,8 +151,7 @@ int checkForWin(char **gameBoard, int x, int y, char playerPiece) {
 /*
  * The addSurroundingPieces() function checks all directly surrounding pieces (except for the piece directly above) for pieces of the same type that might help form a legal win,
  * and adds edges between the nodes in a graph.
- * The function is passed a pointer to the game board and relevant graph, the x dimension and y dimension of the board, the xPos and yPos of the piece to add edges to,
- * the char representing the player piece, and an integer representing whether the edges should be added in both directions or not.
+ * The integer edgeToAdd represents whether the edges should be added in both directions or only one way.
  */
 void addSurroundingPieces(char **gameBoard, struct Graph *graph, int x, int y, int xPos, int yPos, char playerPiece, int edgeToAdd) {
     if((xPos-1 >= 0) && (yPos-1 >= 0) && gameBoard[yPos-1][((xPos-1) * 3) + 1] == playerPiece)

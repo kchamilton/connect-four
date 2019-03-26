@@ -12,7 +12,7 @@
 
 /*
  * The replayOptions() function gets user input about what to do next after a game is over (rematch, return to main menu, or exit).
- * Returns the integer value of the option selected by the user.
+ * The function returns the integer value of the option selected by the user.
  */
 int replayOptions() {
     int answer;
@@ -45,6 +45,7 @@ int likeToResize() {
     char answer;
     printw("Would you like to change the game board dimensions? (y/n): ");
     refresh();
+    //if the answer is a char
     if(scanw("%c", &answer)) {
         if(answer == 'y' || answer == 'Y')
             return 1;
@@ -68,9 +69,8 @@ int likeToResize() {
 }
 
 /*
- * The executeEndMenu() function get user input about how to proceed once the game has finished.
- * The function is passed the struct GameStats to update the board size for a rematch,
- * or to free the memory allocated if user does not want a rematch.
+ * The executeEndMenu() function get user input about how to proceed once the game has finished,
+ * and frees the gameStats memory if the user does not want a rematch.
  */
 void executeEndMenu(struct GameStats *gameStats, int *play, int *exit){
     clear();
