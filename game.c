@@ -172,7 +172,7 @@ void addSurroundingPieces(char **gameBoard, struct Graph *graph, int x, int y, i
 
 //The humanMove() function allows the user to make a move and play.
 void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, int y, int playerNum, int mode, int scoreOne, int scoreTwo, char playerPiece) {
-    int key, placed = 0, xPos = 0;
+    int key, placed = 0, xPos = 0, newXPos = 0;
     //initialize playerMove back to 0
     setPlayerMove(playerMove, x, playerPiece);
     printHeader(playerNum);
@@ -188,13 +188,19 @@ void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, i
         switch (key) {
             case KEY_LEFT:
                 //if left arrow key and xPos of piece currently is greater than zero, move player piece left one
-                if(xPos > 0)
-                    updatePlayerMove(gameBoard, playerMove, x, y, xPos--, playerNum, scoreOne, scoreTwo, xPos, playerPiece);
+                if(xPos > 0) {
+                    newXPos = xPos - 1;
+                    updatePlayerMove(gameBoard, playerMove, x, y, xPos, playerNum, scoreOne, scoreTwo, newXPos, playerPiece);
+                    xPos--;
+                }
                 break;
             case KEY_RIGHT:
                 //if right arrow key and xPos of piece currently is less than x-1, move player piece right one
-                if(xPos < x - 1)
-                    updatePlayerMove(gameBoard, playerMove, x, y, xPos++, playerNum, scoreOne, scoreTwo, xPos, playerPiece);
+                if(xPos < x - 1) {
+                    newXPos = xPos + 1;
+                    updatePlayerMove(gameBoard, playerMove, x, y, xPos, playerNum, scoreOne, scoreTwo, newXPos, playerPiece);
+                    xPos++;
+                }
                 break;
             case KEY_DOWN:
                 //if down arrow key and at least one empty spot in the column, add piece to game board
