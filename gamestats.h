@@ -5,6 +5,9 @@
 #ifndef CONNECT_FOUR_GAMESTATS_H
 #define CONNECT_FOUR_GAMESTATS_H
 
+/*
+ * The struct GameStats stores important game information such as board dimensions, mode, and scores.
+ */
 typedef struct GameStats {
     int xDimension, yDimension, mode, playerOneScore, playerTwoScore;
 }GameStats;

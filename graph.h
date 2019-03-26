@@ -1,10 +1,11 @@
-//
-// Created by Kayla Hamilton on 3/13/2019.
-//
+/*
+ * The structure for the graph, createGraph(), and DFS() came from https://www.programiz.com/dsa/graph-dfs.
+ */
 
 #ifndef CONNECT_FOUR_GRAPH_H
 #define CONNECT_FOUR_GRAPH_H
 
+//https://www.programiz.com/dsa/graph-dfs
 struct Graph {
     int numVertices;
     int *visited;
