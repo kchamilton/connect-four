@@ -197,9 +197,9 @@ void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, i
                     updatePlayerMove(gameBoard, playerMove, x, y, xPos++, playerNum, scoreOne, scoreTwo, xPos, playerPiece);
                 break;
             case KEY_DOWN:
-                placed = 1;
                 //if down arrow key and at least one empty spot in the column, add piece to game board
                 if(gameBoard[0][(xPos * 3) + 1] == ' ') {
+                    placed = 1;
                     int locFound = 0, yPos = y - 1;
                     //find lowest available yPos in the column
                     while(!locFound && yPos >= 0) {
@@ -216,8 +216,7 @@ void humanMove(char **gameBoard, char *playerMove, struct Graph *graph, int x, i
                 //if down arrow key, but no empty spot in the column is available
                 else {
                     printw("\nThe column is full please choose a different one.\n");
-                    getEnter();
-                    humanMove(gameBoard, playerMove, graph, x, y, playerNum, mode, scoreOne, scoreTwo, playerPiece);
+                    refresh();
                 }
             default:
                 break;

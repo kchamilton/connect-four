@@ -43,7 +43,7 @@ void selectMode(struct GameStats *gameStats) {
 
 //The selectXDimension() function gets the desired board width from the user.
 void selectXDimension(struct GameStats *gameStats) {
-    const int maxXDimension = 40;
+    const int maxXDimension = 26;
     int x;
     clear();
     printw("Welcome to Connect Four!\n");
@@ -52,15 +52,17 @@ void selectXDimension(struct GameStats *gameStats) {
     //if the value inputted is an integer
     if(scanw("%d", &x)) {
         //store x dimension
-        if(x <= maxXDimension && x >= 4)
+        if(x >= 4) {
             setxDimension(gameStats, x);
-        else {
             //the value entered was not less than or equal to the max dimension
-            if(x > maxXDimension)
-                printw("\nBoard size is too large, \nplease enter a value less than or equal to %d.\n", maxXDimension);
-            //the value entered was not greater than or equal to 4
-            else
-                printw("\nBoard must have a dimension greater than or equal 4, \nplease enter a value greater than or equal to 4.\n");
+            if(x > maxXDimension) {
+                printw("\nBoard dimension is greater than %d, as a result the board may not render properly for a standard terminal.\n", maxXDimension);
+                getEnter();
+            }
+        }
+        //the value entered was not greater than or equal to 4
+        else {
+            printw("\nBoard must have a dimension greater than or equal 4, \nplease enter a value greater than or equal to 4.\n");
             getEnter();
             //call function again to get correct input
             selectXDimension(gameStats);
@@ -77,7 +79,7 @@ void selectXDimension(struct GameStats *gameStats) {
 
 //The selectYDimension() function gets the desired board height from the user.
 void selectYDimension(struct GameStats *gameStats) {
-    const int maxYDimension = 40;
+    const int maxYDimension = 14;
     int y;
     clear();
     printw("Welcome to Connect Four!\n");
@@ -86,15 +88,17 @@ void selectYDimension(struct GameStats *gameStats) {
     //if the value inputted is an integer
     if(scanw("%d", &y)) {
         //store y dimension
-        if(y <= maxYDimension && y >= 4)
+        if(y >= 4) {
             setyDimension(gameStats, y);
-        else {
             //the value entered was not less than or equal to the max dimension
-            if(y > maxYDimension)
-                printw("\nBoard size is too large, \nplease enter a value less than or equal to %d.\n", maxYDimension);
-            //the value entered was not greater than or equal to 4
-            else
-                printw("\nBoard must have a dimension greater than or equal to 4, \nplease enter a value greater than or equal to 4.\n");
+            if (y > maxYDimension) {
+                printw("\nBoard dimension is greater than %d, as a result the board may not render properly for a standard terminal.\n", maxYDimension);
+                getEnter();
+            }
+        }
+        //the value entered was not greater than or equal to 4
+        else {
+            printw("\nBoard must have a dimension greater than or equal to 4, \nplease enter a value greater than or equal to 4.\n");
             getEnter();
             //call function again to get correct input
             selectYDimension(gameStats);
