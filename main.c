@@ -13,6 +13,8 @@ int newGame();
 int main() {
     int exit = 0;
     initscr();
+    resizeterm(100, 100);
+    getch();
     //loop allows for multiple games in either mode
     while(!exit) {
         //verifies user wants to play a new game

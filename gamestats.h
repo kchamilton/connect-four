@@ -1,7 +1,3 @@
-//
-// Created by Kayla Hamilton on 3/9/2019.
-//
-
 #ifndef CONNECT_FOUR_GAMESTATS_H
 #define CONNECT_FOUR_GAMESTATS_H
 
