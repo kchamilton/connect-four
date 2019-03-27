@@ -25,6 +25,7 @@ The code has now been compiled into the executable play
     
 ## Video Instructions
 The video containing similar instructions and walkthroughs of various game situations can be found at the following link.
+https://youtu.be/MgH0lzKrnRs
 
 ## The AI Player
 The ai player decides its next best move by evaluating each possible move it could make and determining which move is best.
